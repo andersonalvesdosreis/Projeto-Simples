@@ -1,4 +1,7 @@
 from time import sleep
+import hashlib
+import os
+#Funções para verificação de senha e email:
 def senha_forte(senha_aleatoria):
         procurando_caracter = len(senha_aleatoria.strip())
         if procurando_caracter <= 8:
@@ -10,7 +13,7 @@ def senha_forte(senha_aleatoria):
                 if procurando_caracter_novamente <= 8:
                      continue
                 else:
-                     senha_aleatoria = procurando_caracter_novamente
+                     return senha_aleatoria
                      break
         else:
             print('\033[32mSenha Forte!\033[m')
@@ -29,6 +32,9 @@ def email(email_nao_encontrado):
     else:
         print('\033[32mEmail encontrado\033[m')
         return email_nao_encontrado
+def limpar_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
+#Painel do sistema:
 print('='*50)
 print('='*10,'Bem vindo ao sistema simples de login','=')
 print('='*50)
@@ -43,18 +49,26 @@ print('='*50)
 print('Conferindo...')
 sleep(1)
 print('\033[32mEmail e Senha Fortes!\033[m')
+limpar_terminal()
 print('='*50)
-entrar = str(input(('Digite o login para acessar sua pagina: \033[32m')))
+entrar = str(input(('Login: \033[32m')))
 print(end='\033[m')
-senha_entrar = str(input('Digite sua senha para acessar: \033[32m'))
+senha_entrar = str(input('Senha: \033[32m'))
 print(end='\033[m')
-while entrar != tentativa or senha_entrar != senha:
+#Verificação para ver se o usuario existe ou não:
+while True:
      if entrar != tentativa or senha_entrar != senha:
           print('\033[31mUsuario ou Senha Errados!\033[m Tente Novamente em Aqui em Baixo!')
           print('='*50)
-          entrar = str(input(('Digite o login para acessar sua pagina: \033[32m')))
+          entrar = str(input(('Login: \033[32m')))
           print(end='\033[m')
-          senha_entrar = str(input('Digite sua senha para acessar: \033[32m'))
+          senha_entrar = str(input('Senha: \033[32m'))
           print(end='\033[m')
-     elif entrar == tentativa and senha_entrar == senha:
+     else:
+          print('='*50)
+          sleep(0.2)
+          limpar_terminal()
           break
+#Criptografar senhas:
+hash_objeto = hashlib.sha256(senha.encode())
+senha_final = hash_objeto.hexdigest()
