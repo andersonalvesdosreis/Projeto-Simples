@@ -1,5 +1,5 @@
 # Projetos Simples do Anderson
 
-![Robô Programando](https://raw.githubusercontent.com/anderson/Projeto-Simples/main/images/robozinho.gif)
+Todos os projetos são para rodar somente no terminal, o objetivo do projeto é somente o entendimento do leitor para com os codigos!
 
 Projetos simples em python
